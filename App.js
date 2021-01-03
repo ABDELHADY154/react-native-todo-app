@@ -1,13 +1,13 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./src/Components/Auth/login";
 import RegisterScreen from "./src/Components/Auth/register";
 import TodoScreen from "./src/Components/Todo/Todo";
-import data from "./data.json";
+import TodoForm from "./src/Components/Todo/TodoForm";
 import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -17,7 +17,6 @@ export default class App extends Component {
     isLoggedIn: true,
   };
   render() {
-    console.log(data);
     const Login = props => {
       const navigation = useNavigation();
       const isLoggedIn = val => {
@@ -67,11 +66,20 @@ export default class App extends Component {
           </>
         ) : (
           <>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName="">
               <Stack.Screen
                 name="Todo - App"
                 component={TodoScreen}
-                options={{ headerTitleAlign: "center" }}
+                options={{
+                  headerTitleAlign: "center",
+                }}
+              />
+              <Stack.Screen
+                name="Add Task"
+                component={TodoForm}
+                options={{
+                  headerTitleAlign: "center",
+                }}
               />
             </Stack.Navigator>
           </>
