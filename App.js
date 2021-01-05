@@ -76,7 +76,6 @@ export default class App extends Component {
                   headerTitleAlign: "center",
                   headerRight: () => (
                     <Icon
-                      reverseColor
                       name="log-out-outline"
                       type="ionicon"
                       iconStyle={{ backgroundColor: "transparent" }}
