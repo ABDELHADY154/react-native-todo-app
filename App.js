@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 
 export default class App extends Component {
   state = {
-    isLoggedIn: true,
+    isLoggedIn: false,
   };
   render() {
     const Login = props => {
