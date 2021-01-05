@@ -12,35 +12,27 @@ class Todo extends Component {
     super();
     this.state = {
       tasks: [],
-      id: 0,
     };
-
-    this.tasks = [];
   }
-  componentDidMount() {
-    this.setState({ tasks: this.tasks });
-  }
-
   deleteItem = id => {
-    this.tasks.map(item => {
-      if (item.id == id) {
-        var index = this.tasks.indexOf(item);
-        this.tasks.splice(index, 1);
-        console.log("del");
-        this.forceUpdate();
-      }
+    var item = this.state.tasks.findIndex(item => {
+      return item.id === id;
     });
+    if (item != -1) {
+      this.state.tasks.splice(item, 1);
+      this.setState({ tasks: this.state.tasks });
+    }
   };
 
   render() {
     if (this.props.route.params) {
-      this.tasks.push({
-        id: this.state.id++,
+      this.state.tasks.push({
+        id: this.props.route.params.id,
         task: this.props.route.params.task,
         completed: this.props.route.params.completed,
       });
+      this.props.route.params = null;
     }
-
     return (
       <View style={styles.container}>
         <ScrollView style={{ width: "100%" }}>
@@ -48,6 +40,7 @@ class Todo extends Component {
             {this.state.tasks.map(key => {
               return (
                 <TodoItem
+                  key={key.id}
                   keyId={key.id}
                   task={key.task}
                   completed={key.completed}

@@ -19,9 +19,9 @@ export default class TodoItem extends Component {
     this.setState({ completed: false });
   };
 
-  delete = () => {
-    this.props.delete(this.state.id);
-  };
+  // delete = () => {
+  //   this.props.delete(this.props.keyId);
+  // };
   render() {
     return (
       <ListItem
@@ -31,7 +31,6 @@ export default class TodoItem extends Component {
         }
         key={this.props.keyId}
       >
-        {/* {this.state.completed == true ? "" : ""} */}
         <ListItem.Content>
           <ListItem.Title style={{ fontSize: 20 }}>
             {this.state.task}
@@ -60,7 +59,7 @@ export default class TodoItem extends Component {
           type="ionicon"
           color="red"
           size={35}
-          onPress={this.delete}
+          onPress={() => this.props.delete(this.props.keyId)}
         />
       </ListItem>
     );

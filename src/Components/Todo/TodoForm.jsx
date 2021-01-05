@@ -3,9 +3,11 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Text, Input, Button } from "galio-framework";
+import nextId from "react-id-generator";
 
 class TodoForm extends Component {
   state = {
+    id: nextId(),
     task: "",
     completed: false,
     error: "",
@@ -14,6 +16,7 @@ class TodoForm extends Component {
   addNewTask = () => {
     if (this.state.task) {
       this.props.navigation.navigate("Todo - App", {
+        id: this.state.id,
         task: this.state.task,
         completed: false,
       });
