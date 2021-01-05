@@ -19,16 +19,18 @@ export default class TodoItem extends Component {
     this.setState({ completed: false });
   };
 
-  // delete = () => {
-  //   this.props.delete(this.props.keyId);
-  // };
   render() {
     return (
       <ListItem
         bottomDivider
-        containerStyle={
-          this.state.completed == true ? { backgroundColor: "lightgreen" } : ""
-        }
+        containerStyle={{
+          backgroundColor:
+            this.state.completed == true
+              ? "lightgreen"
+              : this.state.completed == false
+              ? "white"
+              : "",
+        }}
         key={this.props.keyId}
       >
         <ListItem.Content>

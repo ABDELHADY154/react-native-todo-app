@@ -11,7 +11,13 @@ class Todo extends Component {
   constructor() {
     super();
     this.state = {
-      tasks: [],
+      tasks: [
+        {
+          id: 1,
+          task: "task 1",
+          completed: false,
+        },
+      ],
     };
   }
   deleteItem = id => {

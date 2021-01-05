@@ -9,6 +9,7 @@ import RegisterScreen from "./src/Components/Auth/register";
 import TodoScreen from "./src/Components/Todo/Todo";
 import TodoForm from "./src/Components/Todo/TodoForm";
 import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ export default class App extends Component {
         />
       );
     };
+
     return (
       <NavigationContainer>
         {this.state.isLoggedIn == false ? (
@@ -72,6 +74,24 @@ export default class App extends Component {
                 component={TodoScreen}
                 options={{
                   headerTitleAlign: "center",
+                  headerRight: () => (
+                    <Icon
+                      reverseColor
+                      name="log-out-outline"
+                      type="ionicon"
+                      iconStyle={{ backgroundColor: "transparent" }}
+                      containerStyle={{
+                        marginRight: 20,
+                      }}
+                      size={35}
+                      onPress={() => {
+                        this.setState({ isLoggedIn: false });
+                      }}
+                    />
+                  ),
+                  headerStyle: {
+                    height: 120,
+                  },
                 }}
               />
               <Stack.Screen
